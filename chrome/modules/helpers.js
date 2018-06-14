@@ -14,18 +14,18 @@ class helpers {
     static focusSearch(){
         // We're on mobile facebook
         if(helpers.isMobile()){
-            let search_input = document.querySelector();
+            let search_input = document.querySelector(variables.mobile_elements.search_input);
             // Display the search input in case it's hidden
             if(search_input.offsetParent === null){
-                
+                document.querySelector(variables.mobile_elements.search_button).click();
+                search_input.focus();
             // If it's already visible, just focus it
             }else{
                 search_input.focus();
             }
-
         // We're on desktop facebook
         }else{
-
+            document.querySelector(variables.desktop_elements.search_input).focus();
         }
     }
 
@@ -35,7 +35,7 @@ class helpers {
     }
 
     static isInput(target){
-       return target.nodeName === 'TEXTAREA' || target.nodeName === 'INPUT' || target.nodeName === 'SELECT';
+       return target.nodeName === 'TEXTAREA' || target.nodeName === 'INPUT' || target.nodeName === 'SELECT' || document.activeElement.hasAttribute('contenteditable');
     }
 
     static isVisible(element){

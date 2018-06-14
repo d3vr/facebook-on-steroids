@@ -46,7 +46,7 @@ class FOS {
 
         switch (type) {
             case '@':
-                commands.profile(command);
+                commands.profile(command, this);
                 break;
         
             default:

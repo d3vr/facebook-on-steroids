@@ -2,7 +2,7 @@
 
 // All FOS commands
 class commands {
-    static profile(profile){
+    static profile(profile, fos){
         console.log(profile);
 
         let navigateTo = '';
@@ -16,6 +16,8 @@ class commands {
                 break;
         }
 
+
+        fos.hide();
         window.location = navigateTo;
     }
 }
