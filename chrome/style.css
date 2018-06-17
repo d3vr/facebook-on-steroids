@@ -1,4 +1,8 @@
 #fos_overlay {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -6,16 +10,72 @@
     height: 100%;
     z-index: 99999;
     background: rgba(0, 0, 0, 0.5);
-    display: none;
-    justify-content: center;
+    color: rgb(223, 223, 223);
+}
+#fos_wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0;
+    width: 60%;
+    border-radius: 6px;
+    overflow: hidden;
 }
 #fos_command_bar {
     display: flex;
-    width: 60%;
+    flex-shrink: 0;
     height: 60px;
-    margin-top: 100px;
 }
-#fos_command_bar>input {
+#fos_command_input {
     flex: 1;
     padding: 10px;
+    background: rgb(44, 44, 54);
+    border-color: rgb(44, 44, 54);
+    color: rgb(223, 223, 223);
+    outline: 0;
+}
+#fos_helper {
+    font-style: italic;
+    padding: 3px;
+}
+#no_choices {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+#fos_choices {
+    background: rgb(35, 35, 45);
+    overflow: auto;
+}
+#fos_choices .fos_choice {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+#fos_choices .fos_choice:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+#fos_choices .fos_choice_label {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+#fos_choices .fos_choice_img {
+    float: left;
+    margin-right: 10px;
+}
+#fos_choices .fos_choice_description {
+    font-style: italic;
+    font-size: 0.9em;
+    color: rgba(223, 223, 223, 0.6);
+}
+#fos_choices .fos_choice.selected {
+    background: rgba(255, 255, 255, 0.05);
+    animation: 1.4s selected-choice infinite;
+}
+@keyframes selected-choice {
+    0%     { background: rgba(255, 255, 255, 0.01); }
+    50%    { background: rgba(255, 255, 255, 0.05); }
+    100%   { background: rgba(255, 255, 255, 0.01); }
 }

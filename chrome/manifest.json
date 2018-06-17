@@ -13,14 +13,18 @@
       "matches": ["https://*.facebook.com/*", "http://*.facebook.com/*"],
       "all_frames": false,
       "css": ["style.css"],
-      "js": ["content.js"]
+      "js": ["content.js"],
+      "run_at": "document_start"
     }
   ],
   "web_accessible_resources": [
         "main.js",
         "modules/fos.js",
+        "modules/fuse.js",
         "modules/helpers.js",
+        "modules/choices.js",
         "modules/commands.js",
-        "modules/variables.js"
+        "modules/tasks.js",
+        "modules/constants.js"
   ]
 }

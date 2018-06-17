@@ -1,6 +1,6 @@
 'use strict';
 
-import { variables } from './variables.js';
+import { constants } from './constants.js';
 
 // Helper functions
 class helpers {
@@ -14,10 +14,10 @@ class helpers {
     static focusSearch(){
         // We're on mobile facebook
         if(helpers.isMobile()){
-            let search_input = document.querySelector(variables.mobile_elements.search_input);
+            let search_input = helpers._(constants.mobile_elements.search_input);
             // Display the search input in case it's hidden
             if(search_input.offsetParent === null){
-                document.querySelector(variables.mobile_elements.search_button).click();
+                helpers._(constants.mobile_elements.search_button).click();
                 search_input.focus();
             // If it's already visible, just focus it
             }else{
@@ -25,7 +25,7 @@ class helpers {
             }
         // We're on desktop facebook
         }else{
-            document.querySelector(variables.desktop_elements.search_input).focus();
+            helpers._(constants.desktop_elements.search_input).focus();
         }
     }
 
@@ -38,8 +38,48 @@ class helpers {
        return target.nodeName === 'TEXTAREA' || target.nodeName === 'INPUT' || target.nodeName === 'SELECT' || document.activeElement.hasAttribute('contenteditable');
     }
 
+    static isCommandInput(){
+        return document.activeElement.hasAttribute('id') && document.activeElement.id == 'fos_command_input';
+    }
+
     static isVisible(element){
-        return element.offsetParent === null;
+        return element.style.display !== 'none';
+    }
+
+    // Convert command choice list to Fuse results array (used when search term is empty)
+    static fusify(data) {
+        if(!data)
+            return [];
+
+        let formatted_data = [];
+        data.forEach((item) => {
+            formatted_data.push({
+                item: item
+            });
+        })
+
+        return formatted_data;
+    }
+
+    // Return URL Params
+    static getUrlParams(){
+        return (new URL(location)).searchParams;
+    }
+
+    static _(query, element){
+        element = element || 0;
+        if(element)
+            return element.querySelector(query);
+        else
+            return document.querySelector(query);
+    }
+
+    static __(query, element){
+        element = element || 0;
+        if(element)
+            return element.querySelectorAll(query);
+        else
+            return document.querySelectorAll(query);
     }
 }
 
