@@ -86,7 +86,6 @@ class FOS {
                 data = choices.commands;
                 break;
             // Hashtags
-            // TODO: don't order these choices by score, keep fixed order
             case '#':
                 data = choices.hashtags;
                 data.choices = [
@@ -118,7 +117,6 @@ class FOS {
                 ]
                 break;
             // Search
-            // TODO: don't order these choices by score, keep fixed order
             case '$':
                 data = choices.search;
                 data.choices = [
@@ -185,7 +183,11 @@ class FOS {
         this.clearChoices();
         if(data.choices){
             if(command !== ''){
-                let fs = new Fuse(data.choices, constants.fuse_options.js);
+                let options = constants.fuse_options;
+                // Don't sort choices for Hashtag and Search modes
+                if(type == '#' || type == '$')
+                    options = Object.assign(options, { shouldSort: false });
+                let fs = new Fuse(data.choices, options);
                 let results = fs.search(command);
                 this.displayChoices(results, type);
             }else{
