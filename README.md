@@ -26,9 +26,10 @@ The Commands Bar, CMDBar for short, is a quick way to access different parts of 
 The CMDBar uses a mode system to access different functionalities. Each mode has a symbol assigned to it, to access one mode: the first character you type into the CMDBar is the **character assigned to that mode**.
 
 **Modes**:
+
 | Character  | Name | Description |
-| ------------- | ------------- | --- |
-| `\``  | Navigation | Shortcuts to different pages and parts on facebook |
+| ------------- | ------------- | ------------- |
+| ` \` ` | Navigation | Shortcuts to different pages and parts on facebook |
 | `!`  | Command | List of FOS commands |
 | `@`  | Profile | List of all of your friends |
 | `#`  | Hashtag | A shortcut to listing posts using a hashtag |
@@ -36,12 +37,12 @@ The CMDBar uses a mode system to access different functionalities. Each mode has
 | `?`  | Search | Show CMDBar help |
 
 
-### Custom Newsfeeds (`TODO`)
-### Posts classifier (`TODO`)
-### Newsfeed filters (`TODO`)
-### Vim-like navigation (`TODO`)
+### Custom Newsfeeds: `TODO`
+### Posts classifier: `TODO`
+### Newsfeed filters: `TODO`
+### Vim-like navigation: `TODO`
 
-## Keybindidngs
+## Keybindings
 **Contexts**:
 - `NAI` -  Not An Input: Works when no input is focused
 - `EVR` -  Everywhere: Works everywhere, even in inputs
@@ -77,7 +78,7 @@ The CMDBar uses a mode system to access different functionalities. Each mode has
 TODO
 
 ## Credits
-- [Fuse.js](https://github.com/krisk/fuse): fuzzy search (used for filter CMDBar choices)
+- [Fuse.js](https://github.com/krisk/fuse): used for filtering CMDBar choices
 
 ## Licence
 This project is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html).
