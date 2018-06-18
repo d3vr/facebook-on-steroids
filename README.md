@@ -27,14 +27,14 @@ The CMDBar uses a mode system to access different functionalities. Each mode has
 
 **Modes**:
 
-| Character  | Name | Description |
+| Trigger character  | Name | Description |
 | ------------- | ------------- | ------------- |
-| ` \` ` | Navigation | Shortcuts to different pages and parts on facebook |
+| `` ` `` (back tick) | Navigation | Shortcuts to different pages and parts on facebook |
 | `!`  | Command | List of FOS commands |
 | `@`  | Profile | List of all of your friends |
-| `#`  | Hashtag | A shortcut to listing posts using a hashtag |
-| `$`  | Search | Hashtag |
-| `?`  | Search | Show CMDBar help |
+| `#`  | Hashtag | Search for posts using a given hashtag |
+| `$`  | Search | Shortcut to facebook's search |
+| `?`  | Help | Show CMDBar help |
 
 
 ### Custom Newsfeeds: `TODO`
@@ -52,15 +52,15 @@ The CMDBar uses a mode system to access different functionalities. Each mode has
 | ------------- | ------------- | ------------- |
 | `. (dot)`  |  Open the CMDBar (No mode) | NAI |
 | `Alt + . (dot)`  |  Open the CMDBar (No mode) | EVR |
-| `\``  |  Open CMDBar in Navigation mode | NAI |
-| `!`  |  Open CMDBar in Command mode | NAI |
-| `@`  |  Open CMDBar in Profile mode | NAI |
-| `#`  |  Open CMDBar in Hashtag mode | NAI |
-| `$`  |  Open CMDBar in Search mode | NAI |
-| `Alt + (\`/!/@/#/$)`  |  Open CMDBar in given mode | EVR |
-| `Alt+K/Alt+J | Up/Down`  | Cycle through choices in the CMDBar | CMD |
+| `` ` `` or `²` |  Open CMDBar in Navigation mode | NAI |
+| `!` or `1`  |  Open CMDBar in Command mode | NAI |
+| `@` or `2` |  Open CMDBar in Profile mode | NAI |
+| `#` or `3` |  Open CMDBar in Hashtag mode | NAI |
+| `$` or `4` |  Open CMDBar in Search mode | NAI |
+| ``Alt + (`/!/@/#/$)``  |  Open CMDBar in given mode | EVR |
+| `Alt+K` / `Alt+J` or  `Up` / `Down`  | Cycle through choices in the CMDBar | CMD |
 | `Esc`  | Close the CMDBar | CMD |
-| `Alt+K/Alt+J`  | Scroll Up Down | NAI |
+| `Alt+K` / `Alt+J`  | Scroll Up Down | NAI |
 | `/`  | Focus the facebook search box | NAI |
 
 ## Roadmap
