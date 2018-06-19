@@ -3,35 +3,29 @@
 import { helpers } from './helpers.js';
 import { constants } from './constants.js';
 import { choices } from './choices.js';
+import { messenger } from './messenger.js';
 import { commands } from './commands.js';
-import { tasks } from './tasks.js';
 
 class FOS {
     // Init FOS
     constructor() {
         this.registerKeybindings();
 
-        // Execute cross-page tasks if any is found
-        window.addEventListener("message", (event) => {
-            if(typeof event.data === 'object'){
-                if(event.data.executeFosTask){
-                    tasks[event.data.executeFosTask]();
-                }
-            }
-        })
-
         window.fos = {};
         let context = this;
+
+        messenger.register();
+
         window.onload = () => {
-            let fos_html = 
-                '<div id="fos_overlay">'+
-                    '<div id="fos_wrapper">'+
-                        '<div id="fos_command_bar">'+
-                            '<input type="text" id="fos_command_input" autocomplete="off" placeholder="Type command or ? for help">'+
-                        '</div>'+
-                        '<div id="fos_choices"></div>'+
-                    '</div>'+
-                '</div>';
+            let fos_html = `
+            <div id="fos_overlay">
+                <div id="fos_wrapper">
+                    <div id="fos_command_bar">
+                        <input type="text" id="fos_command_input" autocomplete="off" placeholder="Type command or ? for help">
+                    </div>
+                    <div id="fos_choices"></div>
+                </div>
+            </div>`;
             window.fos.element = document.body.appendChild(helpers.createElement(fos_html));
             window.fos.choices = helpers._("#fos_choices", window.fos.element);
 
@@ -41,16 +35,8 @@ class FOS {
                 input.addEventListener("input", function(e){
                     context.handleInput(input.value);
                 });
-
-                // console.log(history.state);
-                // // Execute cross-page tasks if there are any
-                // if(history.state && history.state.fosTask){
-                //     tasks[history.state.fosTask]();
-                //     history.replaceState({}, "", "");
-                // }
             });
         }
-
     }
 
     // Show FOS
@@ -85,7 +71,7 @@ class FOS {
         switch (type) {
             // Profiles/Pages/Groups
             case '@':
-                data = choices.profile;
+                data = { choices: window.fos.friends };
                 break;
             // FB Navigation
             case '`':
@@ -193,11 +179,7 @@ class FOS {
         this.clearChoices();
         if(data.choices){
             if(command !== ''){
-                let options = constants.fuse_options;
-                // Don't sort choices for Hashtag and Search modes
-                if(type == '#' || type == '$')
-                    options = Object.assign(options, { shouldSort: false });
-                let fs = new Fuse(data.choices, options);
+                let fs = new Fuse(data.choices, constants.fuse_options(type));
                 let results = fs.search(command);
                 this.displayChoices(results, type);
             }else{
@@ -218,12 +200,19 @@ class FOS {
         if(results.length){
             results.forEach((result) => {
                 let item = result.item;
+
+                let command = type == '@' ? `navigate.profile('${item.uid}')` : item.command;
+                let label = type == '@' ? item.text : item.label;
+                let description = type == '@' ? `@${item.alias}${item.subtext ? ', '+item.subtext : ''}` : item.description;
+                let photo = type == '@' ? `<img class="fos_choice_img" src="${item.photo}" />` : '';
+
                 let choice_to_insert = 
-                '<div class="fos_choice" data-command="'+item.command+'">'+
-                    (type == '@' ? '<img class="fos_choice_img" src="https://placekitten.com/35/35" />' : '')+
-                    '<div class="fos_choice_label">'+item.label+'</div>'+
-                    '<div class="fos_choice_description">'+item.description+'</div>'+
-                '</div>';
+                `<div class="fos_choice" data-command="${command}">
+                    ${photo}
+                    <div class="fos_choice_label">${label}</div>
+                    <div class="fos_choice_description">${description}</div>
+                </div>`;
+
                 window.fos.choices.appendChild(helpers.createElement(choice_to_insert));
             });
             
@@ -311,7 +300,7 @@ class FOS {
                     if(window.fos.scroll_interval)
                         return;
                     window.fos.scroll_interval = setInterval(() => {
-                        window.scrollBy(0, -15);
+                        window.scrollBy(0, -30);
                     }, window.fos.scroll_interval);
                 }
 
@@ -320,7 +309,7 @@ class FOS {
                     if(window.fos.scroll_interval)
                         return;
                     window.fos.scroll_interval = setInterval(() => {
-                        window.scrollBy(0, 15);
+                        window.scrollBy(0, 30);
                     }, window.fos.scroll_interval);
                 }
 
@@ -395,7 +384,7 @@ class FOS {
         document.addEventListener("keyup", function(e){
             let is_input = helpers.isInput(e.target);
             if(!is_input){
-                // Alt+K: scroll up
+                // Stop scrolling
                 if(e.altKey && (e.keyCode == 75 || e.keyCode == 74)){
                     clearInterval(window.fos.scroll_interval);
                     delete window.fos.scroll_interval;

@@ -66,6 +66,12 @@ class helpers {
         return (new URL(location)).searchParams;
     }
 
+    static getUserId(){
+        let c = document.cookie;
+        let user_index = c.indexOf('c_user=');
+        return c.substring(user_index+7, c.indexOf(';', user_index));
+    }
+
     static _(query, element){
         element = element || 0;
         if(element)

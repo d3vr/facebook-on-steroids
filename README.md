@@ -60,7 +60,7 @@ The CMDBar uses a mode system to access different functionalities. Each mode has
 | ``Alt + (`/!/@/#/$)``  |  Open CMDBar in given mode | EVR |
 | `Alt+K` / `Alt+J` or  `Up` / `Down`  | Cycle through choices in the CMDBar | CMD |
 | `Esc`  | Close the CMDBar | CMD |
-| `Alt+K` / `Alt+J`  | Scroll Up Down | NAI |
+| `Alt+K` / `Alt+J`  | Scroll Up / Down | NAI |
 | `/`  | Focus the facebook search box | NAI |
 
 ## Roadmap

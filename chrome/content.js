@@ -12,20 +12,10 @@ main.setAttribute("type", "module");
 main.setAttribute("src", chrome.extension.getURL('main.js'));
 head.insertBefore(main, head.lastChild);
 
-// Check if a cross-page task needs to be set
-window.addEventListener("message", (event) => {
-    if(typeof event.data === 'object'){
-        if(event.data.registerFosTask){
-            chrome.storage.local.set({task: event.data.registerFosTask});
-        }
-    }
-})
-// Check if there are any cross-page tasks that need to be executed
-window.onload = () => {
-    chrome.storage.local.get(["task"], (result) => {
-        if(result && result.task){
-            window.postMessage({executeFosTask: result.task}, window.location.origin);
-            chrome.storage.local.remove(["task"]);
-        }
-    });
-}
+// Debugging only
+// chrome.storage.local.clear(function() {
+//     var error = chrome.runtime.lastError;
+//     if (error) {
+//         console.error(error);
+//     }
+// });

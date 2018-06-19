@@ -64,10 +64,12 @@
 #fos_choices .fos_choice_img {
     float: left;
     margin-right: 10px;
+    width: 60px;
+    height: 60px;
 }
 #fos_choices .fos_choice_description {
     font-style: italic;
-    font-size: 0.9em;
+    font-size: 1em;
     color: rgba(223, 223, 223, 0.6);
 }
 #fos_choices .fos_choice.selected {

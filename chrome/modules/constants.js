@@ -17,8 +17,8 @@ class constants {
             'create_public_event_button': '[ajaxify$="&default_user_event_privacy_type=public_event"]',
         }
     }
-    static get fuse_options(){
-        return {
+    static fuse_options(type){
+        let options = {
             shouldSort: true,
             findAllMatches: true,
             includeMatches: true,
@@ -32,7 +32,18 @@ class constants {
                 "description",
                 "command"
             ]
+        };
+        if(type == '#' || type == '$')
+            options["shouldSort"] = false;
+        if(type == '@'){
+            options["keys"] = [
+                "alias",
+                "text",
+                "subtext"
+            ];
         }
+
+        return options;
     }
 
     static get scroll_speed(){

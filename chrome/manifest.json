@@ -1,6 +1,6 @@
 {
 	"name": "Facebook On Steroids",
-	"version": "1.0",
+	"version": "0.1",
 	"description": "Customize everything about your facebook experience",
 	"manifest_version": 2,
 	"permissions": ["storage"],
@@ -13,7 +13,7 @@
 			"matches": ["*://*.facebook.com/*"],
 			"all_frames": false,
 			"css": ["style.css"],
-			"js": ["content.js"],
+			"js": ["content.js", "messaging.js"],
 			"run_at": "document_start"
 		}
 	],
@@ -25,6 +25,10 @@
         "modules/choices.js",
         "modules/commands.js",
         "modules/tasks.js",
+        "modules/messenger.js",
         "modules/constants.js"
-	]
+	],
+	"icons": {
+		"170": "assets/icon.png"
+	}
 }
