@@ -13,7 +13,7 @@ For now it's Chrome extension, I might do a Firefox port in the future if the pr
 - [Licence](#licence)
 
 ## Installation
-For now you'll need to load the unpacked extension, at some point I'll release the .crx and publish it on the Chrome Web Store.
+You can either [get the .crx from the releases page](https://github.com/d3vr/facebook-on-steroids/releases/) and drop it onto your extensions page, or you could:
 1. Clone the repo `git clone https://github.com/d3vr/facebook-on-steroids.git`
 2. Go to your **extension's page** (`chrome://extensions`) and enable *developer mode*.
 3. Click on `Load unpacked` button and pick the `chrome` folder from the cloned repo.
