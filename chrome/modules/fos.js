@@ -11,6 +11,15 @@ class FOS {
     constructor() {
         this.registerKeybindings();
 
+        // Execute cross-page tasks if any is found
+        window.addEventListener("message", (event) => {
+            if(typeof event.data === 'object'){
+                if(event.data.executeFosTask){
+                    tasks[event.data.executeFosTask]();
+                }
+            }
+        })
+
         window.fos = {};
         let context = this;
         window.onload = () => {
@@ -29,15 +38,16 @@ class FOS {
             window.fos.params = helpers.getUrlParams();
             setTimeout(function(){
                 let input = helpers._("input", window.fos.element);
-                helpers._("#fos_command_bar", window.fos.element).addEventListener("submit", function(e){
-                });
                 input.addEventListener("input", function(e){
                     context.handleInput(input.value);
                 });
 
-                if(window.fos.params.has('fos-task')){
-                    tasks[window.fos.params.get('fos-task')]();
-                }
+                // console.log(history.state);
+                // // Execute cross-page tasks if there are any
+                // if(history.state && history.state.fosTask){
+                //     tasks[history.state.fosTask]();
+                //     history.replaceState({}, "", "");
+                // }
             });
         }
 
@@ -360,7 +370,11 @@ class FOS {
 
                 // Enter: pick choice
                 if(e.keyCode == 13){
-                    eval('commands.'+helpers._(".fos_choice.selected").dataset.command);   
+                    let choice_command = helpers._(".fos_choice.selected").dataset.command;
+                    choice_command = choice_command.split(";");
+                    choice_command.forEach((cmd) => {
+                        eval('commands.'+cmd);   
+                    });
                     e.preventDefault();
                 }
             }

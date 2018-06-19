@@ -8,19 +8,15 @@ class tasks {
         helpers._(constants.desktop_elements.create_group_button).click();
     }
     static createPublicEvent(){
-        console.log("public");
+        helpers._(constants.desktop_elements.create_event_button).click();
+        helpers._(constants.desktop_elements.create_public_event_button).click();
     }
     static createPrivateEvent(){
-        console.log("private");
+        helpers._(constants.desktop_elements.create_event_button).click();
+        helpers._(constants.desktop_elements.create_private_event_button).click();
     }
     static editProfile(){
-        console.log("edit profile");
-    }
-    static viewProfileAs(){
-        console.log("view profile as");
-    }
-    static createPhotoAlbum(){
-        console.log("create album");
+        helpers._(constants.desktop_elements.edit_profile_button).click();
     }
 }
 

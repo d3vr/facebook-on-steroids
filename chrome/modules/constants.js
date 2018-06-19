@@ -10,7 +10,11 @@ class constants {
     static get desktop_elements() {
         return {
             'search_input': '#js_j',
-            'create_group_button': '[ajaxify="/ajax/groups/create_get/?ref=group_browse"]'
+            'create_group_button': '[ajaxify="/ajax/groups/create_get/?ref=group_browse"]',
+            'edit_profile_button': '[ajaxify="/profile/edit/public/show/"]',
+            'create_event_button': '[data-testid="event-create-split-menu"]',
+            'create_private_event_button': '[ajaxify$="&default_user_event_privacy_type=private_event"]',
+            'create_public_event_button': '[ajaxify$="&default_user_event_privacy_type=public_event"]',
         }
     }
     static get fuse_options(){

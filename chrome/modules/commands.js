@@ -33,6 +33,12 @@ let commands = {
                 console.log('refresh pages');
             }
         }
+    },
+    // Cross-page tasks (e.g: Create group)
+    tasks: {
+        add: (task) => {
+            window.postMessage({registerFosTask: task}, window.location.origin);
+        }
     }
 }
 

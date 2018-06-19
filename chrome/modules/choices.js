@@ -49,13 +49,13 @@ class choices {
                 },
                 {
                     label: 'Profile > View As',
-                    command: 'navigate.to(\'/me/?fos-task=viewProfileAs\')',
-                    description: 'TODO'
+                    command: 'navigate.to(\'/me?viewas=100000686899395\')',
+                    description: 'View your profile as another person'
                 },
                 {
                     label: 'Edit profile',
-                    command: 'navigate.to(\'/me/?fos-task=editProfile\')',
-                    description: 'TODO'
+                    command: 'tasks.add(\'editProfile\');navigate.to(\'/me\')',
+                    description: 'Edit your profile'
                 },
                 {
                     label: 'Friends',
@@ -133,11 +133,6 @@ class choices {
                     description: 'Go to my photo albums'
                 },
                 {
-                    label: 'Profile > Photos > Create album',
-                    command: 'navigate.to(\'/me/photos_albums?fos-task=createPhotoAlbum\')',
-                    description: 'TODO: Create a new album'
-                },
-                {
                     label: 'Profile > Videos > Videos You\'re Tagged In',
                     command: 'navigate.to(\'/me/videos_of\')',
                     description: 'Go to my videos page'
@@ -174,18 +169,43 @@ class choices {
                 },
                 {
                     label: 'Events > Create Public Event',
-                    command: 'navigate.to(\'/events#fos-task=createPublicEvent\')',
-                    description: 'TODO'
+                    command: 'tasks.add(\'createPublicEvent\');navigate.to(\'/events\')',
+                    description: 'Create a public event'
                 },
                 {
                     label: 'Events > Create Private Event',
-                    command: 'navigate.to(\'/events#fos-task=createPrivateEvent\')',
-                    description: 'TODO'
+                    command: 'tasks.add(\'createPrivateEvent\');navigate.to(\'/events\')',
+                    description: 'Create a private event'
                 },
                 {
                     label: 'Marketplace',
                     command: 'navigate.to(\'/marketplace\')',
                     description: 'Go to marketplace'
+                },
+                {
+                    label: 'Marketplace > Groups',
+                    command: 'navigate.to(\'/marketplace/grooups\')',
+                    description: 'Go to marketplace groups'
+                },
+                {
+                    label: 'Marketplace > Buying',
+                    command: 'navigate.to(\'/marketplace/buying\')',
+                    description: 'Keep track of items you\'re buying'
+                },
+                {
+                    label: 'Marketplace > Selling',
+                    command: 'navigate.to(\'/marketplace/selling\')',
+                    description: 'Keep track of items you\'re selling'
+                },
+                {
+                    label: 'Marketplace > Collections (Saved)',
+                    command: 'navigate.to(\'/marketplace/saved_collections\')',
+                    description: 'List of items you saved from the marketplace'
+                },
+                {
+                    label: 'Marketplace > Sell Something',
+                    command: 'navigate.to(\'/marketplace\')',
+                    description: 'Sell an item'
                 },
                 {
                     label: 'Privacy Shortcuts',
@@ -294,7 +314,7 @@ class choices {
                 },
                 {
                     label: 'Groups > Create group',
-                    command: 'navigate.to(\'/groups?fos-task=createGroup\')',
+                    command: 'tasks.add(\'createGroup\');navigate.to(\'/groups\')',
                     description: 'Create a facebook group'
                 },
                 {
