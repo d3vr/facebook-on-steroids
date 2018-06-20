@@ -224,41 +224,37 @@ class FOS {
         }
     }
 
-    // Select choice above
-    selectChoiceAbove(){
+    // Select next/previous choice by {numver}
+    // number = x => select x choice(s) underneath
+    // number = -x => select x choice(s) above
+    selectNextChoice(number){
+        if(number == 0)
+            return;
+        
         if(window.fos.choices.children.length>1){
             window.fos.selected_choice.classList.remove("selected");
 
-            let next_selected;
-            if(window.fos.selected_choice.previousSibling){
-                next_selected = window.fos.selected_choice.previousSibling;
-                next_selected.classList.add("selected");
-                window.fos.selected_choice = next_selected;
-            }else{
-                next_selected = window.fos.choices.children[window.fos.choices.children.length-1];
-                next_selected.classList.add("selected");
-                window.fos.selected_choice = next_selected;
-            }
-            // Scroll to the selected choice
-            // TODO: Dump 200 and calculate a value dynamically
-            window.fos.choices.scrollTop = next_selected.offsetTop - 200;
-        }
-    }
-    // Select choice underneath
-    selectChoiceUnderneath(){
-        if(window.fos.choices.children.length>1){
-            window.fos.selected_choice.classList.remove("selected");
+            let choices = helpers.__(".fos_choice", window.fos.choices);
+            let current_index = helpers._i(window.fos.selected_choice, choices);
+            let next_selected = choices[current_index+number];
 
-            let next_selected;
-            if(window.fos.selected_choice.nextSibling){
-                next_selected = window.fos.selected_choice.nextSibling;
-                next_selected.classList.add("selected");
-                window.fos.selected_choice = next_selected;
-            }else{
-                next_selected = window.fos.choices.children[0];
-                next_selected.classList.add("selected");
-                window.fos.selected_choice = next_selected;
+            // Next choice to be selected not found, select last choice
+            if(number>0 && !next_selected){
+                if(current_index==choices.length-1)
+                    next_selected = choices[0];
+                else
+                    next_selected = choices[choices.length-1];
             }
+            // Previous choice to be selected not found, select first choice
+            if(number<0 && !next_selected){
+                if(current_index==0)
+                    next_selected = choices[choices.length-1];
+                else
+                    next_selected = choices[0];
+            }
+            next_selected.classList.add("selected");
+            window.fos.selected_choice = next_selected;
+
             // Scroll to the selected choice
             // TODO: Dump 200 and calculate a value dynamically
             window.fos.choices.scrollTop = next_selected.offsetTop - 200;
@@ -348,12 +344,23 @@ class FOS {
             if(is_command_input){
                 // Up arrow or Alt+K (select choice on top)
                 if(e.keyCode == 38 || e.altKey && e.keyCode == 75){
-                    context.selectChoiceAbove();
+                    context.selectNextChoice(-1);
                     e.preventDefault();
                 }
+                // Down arrow or Alt+I (select choice underneath)
+                if(e.keyCode == 73 && e.altKey){
+                    context.selectNextChoice(-5);
+                    e.preventDefault();
+                }
+
                 // Down arrow or Alt+J (select choice underneath)
                 if(e.keyCode == 40 || e.altKey && e.keyCode == 74){
-                    context.selectChoiceUnderneath();
+                    context.selectNextChoice(1);
+                    e.preventDefault();
+                }
+                // Down arrow or Alt+U (select choice underneath)
+                if(e.keyCode == 85 && e.altKey){
+                    context.selectNextChoice(5);
                     e.preventDefault();
                 }
 
