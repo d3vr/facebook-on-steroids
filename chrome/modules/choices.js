@@ -528,7 +528,7 @@ class choices {
                     description: 'Go to mobile homepage'
                 },
                 {
-                    label: 'Desktop version (page)',
+                    label: 'Mobile version (page)',
                     command: 'navigate.mobile()',
                     description: 'Same page in desktop version'
                 },
@@ -573,32 +573,113 @@ class choices {
             choices: [
                 {
                     label: 'Refresh friends list',
-                    command: 'data.refresh.friends()',
+                    command: 'data.friends()',
                     description: 'Dump the cached list of friends and pull a fresh version'
                 },
                 {
                     label: 'Refresh pages list',
-                    command: 'data.refresh.pages()',
+                    command: 'data.pages()',
                     description: 'Dump the cached list of liked pages and pull a fresh version'
                 },
                 {
                     label: 'Refresh groups list',
-                    command: 'data.refresh.groups()',
+                    command: 'data.groups()',
                     description: 'Dump the cached list of groups you manage and are a member of pull a fresh version'
                 },
             ]
         }
     }
     // # Hashtags
-    static get hashtags(){
+    static hashtags(hashtag){
         return {
-            helper: 'Type a hashtag'
+            helper: 'Hashtags',
+            choices: [
+                {
+                    label: `#${hashtag} (Everything)`,
+                    command: `navigate.to('/hashtag/${hashtag}')`,
+                    description: 'Go to the hastag\'s page'
+                },
+                {
+                    label: `#${hashtag} (Posts By You)`,
+                    command: `navigate.to('/hashtag/${hashtag}?filters_rp_author=%7B%22name%22%3A%22author_me%22%2C%22args%22%3A%22%22%7D&ref=side_filter')`,
+                    description: 'Go to the hastag\'s page'
+                },
+                {
+                    label: `#${hashtag} (Posts By Your Friends and Groups)`,
+                    command: `navigate.to('/hashtag/${hashtag}?filters_rp_author=%7B%22name%22%3A%22author_friends_groups%22%2C%22args%22%3A%22%22%7D')`,
+                    description: 'Go to the hastag\'s page'
+                },
+                {
+                    label: `#${hashtag} (Posts You've Seen)`,
+                    command: `navigate.to('/hashtag/${hashtag}?filters_interacted_posts=%7B%22name%22%3A%22interacted_posts%22%2C%22args%22%3A%22%22%7D&ref=side_filter')`,
+                    description: 'Go to the hastag\'s page'
+                },
+                {
+                    label: `#${hashtag} (Posts in Your Groups)`,
+                    command: `navigate.to('/hashtag/${hashtag}?filters_rp_group=%7B%22name%22%3A%22my_groups_posts%22%2C%22args%22%3A%22%22%7D&ref=side_filter')`,
+                    description: 'Go to the hastag\'s page'
+                },
+            ]
         }
     }
     // $ Search
-    static get search(){
+    static search(search_term){
+        let escaped_search_term = escape(search_term);
+
         return {
-            helper: 'Type a search term'
+            helper: 'Tags',
+            choices: [
+                {
+                    label: 'All results for: '+search_term,
+                    command: `navigate.to('/search/str/${escaped_search_term}/keywords_search/')`,
+                    description: 'All results matching the search term'
+                },
+                {
+                    label: 'People matching: '+search_term,
+                    command: `navigate.to('/search/people/?q=${escaped_search_term}')`,
+                    description: 'All people matching the search term'
+                },
+                {
+                    label: 'Photos matching: '+search_term,
+                    command: `navigate.to(\'/search/photos/?q=${escaped_search_term}')`,
+                    description: 'All photos matching the search term'
+                },
+                {
+                    label: 'Videos matching: '+search_term,
+                    command: `navigate.to('/search/videos/?q=${escaped_search_term}')`,
+                    description: 'All videos matching the search term'
+                },
+                {
+                    label: 'Pages matching: '+search_term,
+                    command: `navigate.to('/search/pages/?q=${escaped_search_term}')`,
+                    description: 'All pages matching the search term'
+                },
+                {
+                    label: 'Verified Pages matching: '+search_term,
+                    command: `navigate.to('/search/pages/?q=${escaped_search_term}&filters_verified=%7B%22name%22%3A%22pages_verified%22%2C%22args%22%3A%22%22%7D')`,
+                    description: ''
+                },
+                {
+                    label: 'Places matching: '+search_term,
+                    command: `navigate.to('/search/places/?q=${escaped_search_term}')`,
+                    description: 'All places matching the search term'
+                },
+                {
+                    label: 'Groups matching: '+search_term,
+                    command: `navigate.to('/search/groups/?q=${escaped_search_term}')`,
+                    description: 'All groups matching the search term'
+                },
+                {
+                    label: 'Apps matching: '+search_term,
+                    command: `navigate.to('/search/apps/?q=${escaped_search_term}')`,
+                    description: 'All apps matching the search term'
+                },
+                {
+                    label: 'Events matching: '+search_term,
+                    command: `navigate.to('/search/events/?q=${escaped_search_term}')`,
+                    description: 'All events matching the search term'
+                },
+            ]
         }
     }
     // ? Help

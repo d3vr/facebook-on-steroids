@@ -58,7 +58,8 @@ The CMDBar uses a mode system to access different functionalities. Each mode has
 | `#` or `3` |  Open CMDBar in Hashtag mode | NAI |
 | `$` or `4` |  Open CMDBar in Search mode | NAI |
 | ``Alt + (`/!/@/#/$)``  |  Open CMDBar in given mode | EVR |
-| `Alt+K` / `Alt+J` or  `Up` / `Down`  | Cycle through choices in the CMDBar | CMD |
+| `Alt+K` / `Alt+J` or  `Up` / `Down`  | Scroll Up/Down 1 choice in the CMDBar | CMD |
+| `Alt+I` / `Alt+U`  | Scroll Up/Down 5 choice in the CMDBar | CMD |
 | `Esc`  | Close the CMDBar | CMD |
 | `Alt+K` / `Alt+J`  | Scroll Up / Down | NAI |
 | `/`  | Focus the facebook search box | NAI |

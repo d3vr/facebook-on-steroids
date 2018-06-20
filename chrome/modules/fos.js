@@ -83,90 +83,11 @@ class FOS {
                 break;
             // Hashtags
             case '#':
-                data = choices.hashtags;
-                data.choices = [
-                    {
-                        label: '#'+command+' (Everything)',
-                        command: 'navigate.to(\'/hashtag/'+command+'\')',
-                        description: 'Go to the hastag\'s page'
-                    },
-                    {
-                        label: '#'+command+' (Posts By You)',
-                        command: 'navigate.to(\'/hashtag/'+command+'?filters_rp_author=%7B%22name%22%3A%22author_me%22%2C%22args%22%3A%22%22%7D&ref=side_filter\')',
-                        description: 'Go to the hastag\'s page'
-                    },
-                    {
-                        label: '#'+command+' (Posts By Your Friends and Groups)',
-                        command: 'navigate.to(\'/hashtag/'+command+'?filters_rp_author=%7B%22name%22%3A%22author_friends_groups%22%2C%22args%22%3A%22%22%7D\')',
-                        description: 'Go to the hastag\'s page'
-                    },
-                    {
-                        label: '#'+command+' (Posts You\'ve Seen)',
-                        command: 'navigate.to(\'/hashtag/'+command+'?filters_interacted_posts=%7B%22name%22%3A%22interacted_posts%22%2C%22args%22%3A%22%22%7D&ref=side_filter\')',
-                        description: 'Go to the hastag\'s page'
-                    },
-                    {
-                        label: '#'+command+' (Posts in Your Groups)',
-                        command: 'navigate.to(\'/hashtag/'+command+'?filters_rp_group=%7B%22name%22%3A%22my_groups_posts%22%2C%22args%22%3A%22%22%7D&ref=side_filter\')',
-                        description: 'Go to the hastag\'s page'
-                    },
-                ]
+                data = choices.hashtags(command);
                 break;
             // Search
             case '$':
-                data = choices.search;
-                data.choices = [
-                    {
-                        label: 'All results for: '+command,
-                        command: 'navigate.to(\'/search/str/'+escape(command)+'/keywords_search/\')',
-                        description: 'All results matching the search term'
-                    },
-                    {
-                        label: 'People matching: '+command,
-                        command: 'navigate.to(\'/search/people/?q='+escape(command)+'\')',
-                        description: 'All people matching the search term'
-                    },
-                    {
-                        label: 'Photos matching: '+command,
-                        command: 'navigate.to(\'/search/photos/?q='+escape(command)+'\')',
-                        description: 'All photos matching the search term'
-                    },
-                    {
-                        label: 'Videos matching: '+command,
-                        command: 'navigate.to(\'/search/videos/?q='+escape(command)+'\')',
-                        description: 'All videos matching the search term'
-                    },
-                    {
-                        label: 'Pages matching: '+command,
-                        command: 'navigate.to(\'/search/pages/?q='+escape(command)+'\')',
-                        description: 'All pages matching the search term'
-                    },
-                    {
-                        label: 'Verified Pages matching: '+command,
-                        command: 'navigate.to(\'/search/pages/?q='+escape(command)+'&filters_verified=%7B%22name%22%3A%22pages_verified%22%2C%22args%22%3A%22%22%7D\')',
-                        description: ''
-                    },
-                    {
-                        label: 'Places matching: '+command,
-                        command: 'navigate.to(\'/search/places/?q='+escape(command)+'\')',
-                        description: 'All places matching the search term'
-                    },
-                    {
-                        label: 'Groups matching: '+command,
-                        command: 'navigate.to(\'/search/groups/?q='+escape(command)+'\')',
-                        description: 'All groups matching the search term'
-                    },
-                    {
-                        label: 'Apps matching: '+command,
-                        command: 'navigate.to(\'/search/apps/?q='+escape(command)+'\')',
-                        description: 'All apps matching the search term'
-                    },
-                    {
-                        label: 'Events matching: '+command,
-                        command: 'navigate.to(\'/search/events/?q='+escape(command)+'\')',
-                        description: 'All events matching the search term'
-                    },
-                ];
+                data = choices.search(command);
                 break;
             case '?':
                 data = choices.help;
